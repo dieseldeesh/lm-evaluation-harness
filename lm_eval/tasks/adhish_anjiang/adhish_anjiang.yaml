@@ -2,7 +2,7 @@ task: adhish_anjiang
 dataset_path: json
 dataset_name: null
 dataset_kwargs:
-  data_files: lm_eval/tasks/adhish_anjiang_task/prompts.json
+  data_files: lm_eval/tasks/adhish_anjiang/prompts.json
 output_type: multiple_choice
 training_split: null
 validation_split: null
