@@ -1,0 +1,99 @@
+[Problem Description]:
+<H1>Prime Number</H1>
+
+<p>
+Write a program which reads an integer <var>n</var> and prints the number of prime numbers which are less than or equal to <var>n</var>. A prime number is a natural number which has exactly two distinct natural number divisors: 1 and itself. For example, the first four prime numbers are: 2, 3, 5 and 7.
+</p>
+
+<H2>Input</H2>
+
+<p>
+Input consists of several datasets. Each dataset has an integer <var>n</var> (1 &le; <var>n</var> &le; 999,999) in a line.
+</p>
+
+<p>
+The number of datasets is less than or equal to 30.
+</p>
+
+<H2>Output</H2>
+
+<p>
+For each dataset, prints the number of prime numbers.
+</p>
+
+<H2>Sample Input</H2>
+
+<pre>
+10
+3
+11
+</pre>
+
+<H2>Output for the Sample Input</H2>
+
+<pre>
+4
+2
+5
+</pre>
+
+
+[Program 1]:
+import sys
+from math import floor, sqrt
+from bisect import bisect_right
+
+primes = [2]
+
+def isPrime(v):
+    threshold = floor(sqrt(v))
+    for p in primes:
+        if p > threshold:
+            break
+        if v % p == 0:
+            return False
+    return True
+
+for v in range(3, 1000000, 2):
+    if isPrime(v):
+        primes.append(v)
+
+values = []
+for line in sys.stdin:
+    values.append(int(line))
+
+for v in values:
+    print(bisect_right(primes, v))
+
+
+[Program 2]:
+import sys, math
+
+class Eratos(object):
+    def __init__(self, N):
+        self.N = N
+        self._primes = {i:True for i in range(2, N+1)}
+
+    def filter(self):
+        end = self.N
+        if self.N > 5:
+            end = math.ceil(self.N**0.5) + 1
+        for n in range(2, end):
+            if not self._primes[n]:
+                continue
+            for x in range(n*2, self.N+1, n):
+                if x in self._primes:
+                    self._primes[x] = False
+    
+    def primes(self, x):
+        return [k for k,v in self._primes.items() if v == True and k <= x]
+
+def run():
+    e = Eratos(999999)
+    e.filter()
+    for _n in sys.stdin:
+        N = int(_n)
+        print(len(e.primes(N)))
+
+if __name__ == '__main__':
+    run()

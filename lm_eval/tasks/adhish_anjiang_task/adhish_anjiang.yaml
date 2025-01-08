@@ -1,0 +1,22 @@
+task: adhish_anjiang
+dataset_path: json
+dataset_name: null
+dataset_kwargs:
+  data_files: prompts.json
+output_type: multiple_choice
+training_split: null
+validation_split: null
+test_split: null
+process_docs: !function utils.process_docs
+doc_to_text: "{{query}}"
+doc_to_choice: "{{choices}}"
+doc_to_target: "{{label}}"
+# metric_list:
+#   - metric: acc
+#     aggregation: mean
+#     higher_is_better: true
+#   - metric: acc_norm
+#     aggregation: mean
+#     higher_is_better: true
+metadata:
+  version: 1.0
