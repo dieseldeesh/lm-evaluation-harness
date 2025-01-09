@@ -24,8 +24,7 @@ def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
                 "program2": read_file(prompt_directory / "program2"),
             }),
             "choices": ["No", "Yes"],
-            "gold": 2 if (doc["answer"] == "Yes") else 1,
-            "label": 2 if (doc["answer"] == "Yes") else 1,
+            "answer": doc["answer"],
         }
 
     return dataset.map(process_single_doc)
