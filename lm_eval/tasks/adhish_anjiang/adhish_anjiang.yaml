@@ -9,7 +9,7 @@ dataset_kwargs:
 output_type: multiple_choice
 training_split: train
 validation_split: validation
-test_split: test
+test_split: null
 process_docs: !function utils.process_docs
 doc_to_text: "{{query}}"
 doc_to_choice: "{{choices}}"
