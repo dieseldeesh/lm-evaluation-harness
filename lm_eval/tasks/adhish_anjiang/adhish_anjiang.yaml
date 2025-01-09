@@ -4,8 +4,8 @@ dataset_name: null
 dataset_kwargs:
   data_files: lm_eval/tasks/adhish_anjiang/prompts.json
 output_type: multiple_choice
-training_split: null
-validation_split: null
+training_split: train
+validation_split: validation
 test_split: null
 process_docs: !function utils.process_docs
 doc_to_text: "{{query}}"

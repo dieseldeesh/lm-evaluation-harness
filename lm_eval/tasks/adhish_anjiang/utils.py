@@ -24,6 +24,7 @@ def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
             "choices": ["No", "Yes"],
             "gold": 2 if (doc["answer"] == "Yes") else 1,
             "label": 2 if (doc["answer"] == "Yes") else 1,
+            "split": "train",
         }
 
     return dataset.map(process_single_doc)
