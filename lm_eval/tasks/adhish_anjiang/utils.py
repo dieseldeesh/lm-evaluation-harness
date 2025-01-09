@@ -1,6 +1,7 @@
 import datasets
 import jinja2
 from pathlib import Path
+import os
 
 def read_file(path):
     with open(path, 'r') as f:
@@ -12,6 +13,9 @@ def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
     templateLoader = jinja2.FileSystemLoader(searchpath="./")
     templateEnv = jinja2.Environment(loader=templateLoader)
     template = templateEnv.get_template("template.j2")
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    print(dir_path)
+    raise Exception(dir_path)
 
     def process_single_doc(doc):
         prompt_directory = Path(doc["prompt"])
