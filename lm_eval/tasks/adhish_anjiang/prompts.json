@@ -1,9 +1,5 @@
 {
-    "validation": [
-        {
-            "prompt": "prompts/prime_numbers",
-            "template": "templates/template1.j2",
-            "answer": "Yes"
-        }
-    ]
+    "prompt": "prompts/prime_numbers",
+    "template": "templates/template1.j2",
+    "answer": "Yes"
 }

@@ -2,6 +2,7 @@ task: adhish_anjiang
 dataset_path: json
 dataset_name: null
 dataset_kwargs:
+  trust_remote_code: true
   data_files: lm_eval/tasks/adhish_anjiang/prompts.json
 output_type: multiple_choice
 training_split: train
@@ -20,3 +21,4 @@ doc_to_target: "{{label}}"
 #     higher_is_better: true
 metadata:
   version: 1.0
+  

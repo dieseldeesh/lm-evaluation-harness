@@ -1,12 +1,11 @@
 import datasets
 import jinja2
-from pathlib import Path
 import os
+from pathlib import Path
 
 def read_file(path):
     with open(path, 'r') as f:
         content = f.read()
-
     return content
 
 def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
@@ -27,7 +26,9 @@ def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
             "choices": ["No", "Yes"],
             "gold": 2 if (doc["answer"] == "Yes") else 1,
             "label": 2 if (doc["answer"] == "Yes") else 1,
-            "split": "validation",
         }
 
-    return dataset.map(process_single_doc)
+    return {
+        "train": [],
+        "validation": dataset.map(process_single_doc)
+    }
