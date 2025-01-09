@@ -1,4 +1,8 @@
 {
-    "prompt": "prompts/prime_numbers",
-    "answer": "Yes"
+    "validation": [
+        {
+            "prompt": "prompts/prime_numbers",
+            "answer": "Yes"
+        }
+    ]
 }

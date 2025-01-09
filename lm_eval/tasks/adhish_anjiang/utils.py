@@ -12,14 +12,12 @@ def read_file(path):
 def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    print(dir_path)
-    raise Exception(dir_path)
-    templateLoader = jinja2.FileSystemLoader(searchpath="./")
+    templateLoader = jinja2.FileSystemLoader(searchpath=dir_path)
     templateEnv = jinja2.Environment(loader=templateLoader)
     template = templateEnv.get_template("template.j2")
 
     def process_single_doc(doc):
-        prompt_directory = Path(doc["prompt"])
+        prompt_directory = Path(dir_path) / doc["prompt"]
         return {
             "query": template.render({
                 "description": read_file(prompt_directory / "description"),
@@ -29,7 +27,7 @@ def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
             "choices": ["No", "Yes"],
             "gold": 2 if (doc["answer"] == "Yes") else 1,
             "label": 2 if (doc["answer"] == "Yes") else 1,
-            "split": "train",
+            "split": "validation",
         }
 
     return dataset.map(process_single_doc)
