@@ -28,7 +28,4 @@ def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
             "label": 2 if (doc["answer"] == "Yes") else 1,
         }
 
-    return {
-        "train": [],
-        "validation": dataset.map(process_single_doc)
-    }
+    return dataset.map(process_single_doc)
