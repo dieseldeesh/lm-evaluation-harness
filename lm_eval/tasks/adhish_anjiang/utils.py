@@ -4,9 +4,22 @@ import os
 from pathlib import Path
 
 def read_file(path):
-    with open(path, 'r') as f:
-        content = f.read()
-    return content
+    try:
+        with open(path, 'r') as f:
+            content = f.read()
+        return content
+    except:
+        return None
+    
+def read_directory(directory, variables):
+    variable_dict = dict()
+    
+    for variable in variables:
+        variable_value = read_file(directory / variable)
+        if (variable_value):
+            variable_dict[variable] = variable_value
+    
+    return variable_dict
 
 def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
 
@@ -17,12 +30,9 @@ def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
     def process_single_doc(doc):
         prompt_directory = Path(dir_path) / doc["prompt"]
         template = templateEnv.get_template(doc["template"])
+
         return {
-            "query": template.render({
-                "description": read_file(prompt_directory / "description"), # sometimes description won't exist...
-                "program1": read_file(prompt_directory / "program1"),
-                "program2": read_file(prompt_directory / "program2"),
-            }),
+            "query": template.render(read_directory(prompt_directory)),
             "choices": ["No", "Yes"],
             "answer": doc["answer"],
         }

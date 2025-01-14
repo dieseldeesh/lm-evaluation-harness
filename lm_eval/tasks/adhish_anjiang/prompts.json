@@ -1,5 +1,12 @@
-{
+[
+    {
     "prompt": "prompts/prime_numbers",
     "template": "templates/template1.j2",
     "answer": "Yes"
-}
+    },
+    {
+        "prompt": "prompts/obviously_different",
+        "template": "templates/template2.j2",
+        "answer": "No"
+    }
+]
