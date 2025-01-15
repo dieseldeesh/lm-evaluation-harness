@@ -1,0 +1,7 @@
+[
+    {
+        "prompt": "prompts/obviously_same",
+        "template": "templates/template2.j2",
+        "answer": "Yes"
+    }
+]

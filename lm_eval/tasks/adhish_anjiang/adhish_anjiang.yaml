@@ -4,8 +4,10 @@ dataset_name: null
 dataset_kwargs:
   trust_remote_code: true
   data_files:
-    test: lm_eval/tasks/adhish_anjiang/prompts.json
+    dev: lm_eval/tasks/adhish_anjiang/prompts/dev_prompts.json
+    test: lm_eval/tasks/adhish_anjiang/prompts/test_prompts.json
 output_type: multiple_choice
+fewshot_split: dev
 training_split: null
 validation_split: null
 test_split: test
