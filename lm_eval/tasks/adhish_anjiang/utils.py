@@ -3,6 +3,8 @@ import jinja2
 import os
 from pathlib import Path
 
+variables = ["description", "program1", "program2"]
+
 def read_file(path):
     try:
         with open(path, 'r') as f:
@@ -11,7 +13,7 @@ def read_file(path):
     except:
         return None
     
-def read_directory(directory, variables):
+def read_directory(directory):
     variable_dict = dict()
     
     for variable in variables:
